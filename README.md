@@ -1,7 +1,15 @@
 # Focus on the Target’s Vocabulary: Masked Label Smoothing for Machine Translation
-For latest update, please move to this [repo](https://github.com/chenllliang/MLS).
+For latest update/issues, please move to this [repo](https://github.com/chenllliang/MLS).
 
-Hi, this is the source code of our paper "Focus on the Target’s Vocabulary: Masked Label Smoothing for Machine Translation" accepted by ACL 2022. You can find the paper in the root directory (uploading to arxiv soon).
+**News** 🚩
+- Release preprocessed data and model output. 2022.03.05
+- Code released at Github. 2022.03.04
+- Accepted by ACL 2022 Main Conference. 2022.02.24
+
+**Work in Progress** 🚩
+- Exploring MLS in O2M & M2M Multilingual Translation (Releasing Soon)
+
+Hi, this is the source code of our paper "Focus on the Target’s Vocabulary: Masked Label Smoothing for Machine Translation" accepted by ACL 2022. You can find the paper in https://arxiv.org/abs/2203.02889.
 
 
 
@@ -45,7 +53,8 @@ cd fairseq # We place the MLS criterions inside fairseq's criterion sub-folder, 
 pip install --editable ./
 pip install sacremoses
 
-# Make sure you have the right version of pytorch and CUDA, we use torch 1.9.0+cu111
+# Make sure you have the right version of pytorch and CUDA, we use torch 1.10+cu113
+
 ```
 
 We adopt [mosesdecoder](https://github.com/moses-smt/mosesdecoder) for tokenization , [subword-nmt](https://github.com/rsennrich/subword-nmt) for BPE and [fairseq](https://github.com/pytorch/fairseq) for experiment pipelines. **You need to clone the first two repos into `./Tools` before next step.**
@@ -55,10 +64,23 @@ We adopt [mosesdecoder](https://github.com/moses-smt/mosesdecoder) for tokenizat
 
 ## Preprocess
 
-We have prepared a pre-processed binary data of IWSLT14 DE-EN in the ../databin folder (unzip it and put the two unzipped folders under ../databin/, you can jump to next section then) .
+**We have prepared** a pre-processed binary data of IWSLT14 DE-EN in the `./databin` folder (unzip it and put the two unzipped folders under ./databin/, you can jump to next section then) .
 
 
 If you plan to try your own dataset. You may refer to this [script](https://github.com/chenllliang/MLS/blob/main/scripts/preprocess.sh) for preprocessing and parameter setting.
+
+Before running code, you should have your original translation data's structure looks like belows, each line contains one sentence.
+
+```bash
+./data/dataset-src-tgt/
+-- train.src
+-- train.tgt
+-- dev.src
+-- dev.tgt
+-- test.src
+-- test.tgt
+```
+Then,
 
 ```bash
 cd script
@@ -94,7 +116,7 @@ bash generate.sh ../databin/iwslt14-de-en-joined-new ../checkpoints/de-en-MLS-0.
 ```
 We have uploaded the generated texts in the Output folder, which you can also refer to.
 
-## Some Results on single GPU
+## Some results on single GPU
 
 | BLEU  |  IWSLT14 DE-EN  | WMT16 RO-EN  |
 |  ----  | ----  |----  |
