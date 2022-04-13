@@ -1,4 +1,4 @@
-## Refer to this official [Repository](https://github.com/chenllliang/MLS) for latest news/raising issues, 
+## **** Refer to this official [Repository](https://github.com/chenllliang/MLS) for latest news/raising issues, 
 
 # Focus on the Target’s Vocabulary: Masked Label Smoothing for Machine Translation
 
